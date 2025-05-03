@@ -130,6 +130,7 @@
             this.button_SignCal.TabIndex = 12;
             this.button_SignCal.Text = "+/-";
             this.button_SignCal.UseVisualStyleBackColor = true;
+            this.button_SignCal.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_log
             // 
@@ -140,6 +141,7 @@
             this.button_log.TabIndex = 13;
             this.button_log.Text = "log";
             this.button_log.UseVisualStyleBackColor = true;
+            this.button_log.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Exp
             // 
@@ -150,6 +152,7 @@
             this.button_Exp.TabIndex = 14;
             this.button_Exp.Text = "exp";
             this.button_Exp.UseVisualStyleBackColor = true;
+            this.button_Exp.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_PowCal
             // 
@@ -160,6 +163,7 @@
             this.button_PowCal.TabIndex = 15;
             this.button_PowCal.Text = "xʸ";
             this.button_PowCal.UseVisualStyleBackColor = true;
+            this.button_PowCal.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Square
             // 
@@ -170,6 +174,7 @@
             this.button_Square.TabIndex = 16;
             this.button_Square.Text = "√";
             this.button_Square.UseVisualStyleBackColor = true;
+            this.button_Square.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button9
             // 
@@ -222,6 +227,7 @@
             this.button_PiCal.TabIndex = 23;
             this.button_PiCal.Text = "π";
             this.button_PiCal.UseVisualStyleBackColor = true;
+            this.button_PiCal.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_LeftB
             // 
@@ -232,6 +238,7 @@
             this.button_LeftB.TabIndex = 24;
             this.button_LeftB.Text = "(";
             this.button_LeftB.UseVisualStyleBackColor = true;
+            this.button_LeftB.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_7
             // 
@@ -264,6 +271,7 @@
             this.button_Sub.TabIndex = 27;
             this.button_Sub.Text = "-";
             this.button_Sub.UseVisualStyleBackColor = true;
+            this.button_Sub.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Add
             // 
@@ -274,7 +282,7 @@
             this.button_Add.TabIndex = 28;
             this.button_Add.Text = "+";
             this.button_Add.UseVisualStyleBackColor = true;
-            this.button_Add.Click += new System.EventHandler(this.button_Add_Click);
+            this.button_Add.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Clear
             // 
@@ -295,6 +303,7 @@
             this.button_Factorial.TabIndex = 31;
             this.button_Factorial.Text = "n!";
             this.button_Factorial.UseVisualStyleBackColor = true;
+            this.button_Factorial.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_9
             // 
@@ -347,6 +356,7 @@
             this.button_RightB.TabIndex = 38;
             this.button_RightB.Text = ")";
             this.button_RightB.UseVisualStyleBackColor = true;
+            this.button_RightB.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_8
             // 
@@ -378,6 +388,7 @@
             this.button_Div.TabIndex = 41;
             this.button_Div.Text = "% ";
             this.button_Div.UseVisualStyleBackColor = true;
+            this.button_Div.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Mul
             // 
@@ -388,6 +399,7 @@
             this.button_Mul.TabIndex = 43;
             this.button_Mul.Text = "x";
             this.button_Mul.UseVisualStyleBackColor = true;
+            this.button_Mul.Click += new System.EventHandler(this.CommonBtn);
             // 
             // Form1
             // 

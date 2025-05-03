@@ -12,7 +12,7 @@ namespace window_cal
             int index = word.IndexOf("X");
             string a = word.Substring(0, index).Trim();
             double s = double.Parse(a);
-            string b = word.Substring(index + 2).Trim();
+            string b = word.Substring(index + 1).Trim();
             double ss = double.Parse(b);
             return s * ss;
         }
