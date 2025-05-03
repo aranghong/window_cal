@@ -17,28 +17,34 @@ namespace window_cal
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text += " + "; 
-        }
 
-        public int CalResult(string word)
-        {
-            int index = word.IndexOf("+"); 
+        
 
-            string a = word.Substring(0, index).Trim();    
-            int s = int.Parse(a);      
-            
-            string b = word.Substring(index + 2).Trim();
-            int ss = int.Parse(b);
-
-            return s+ss;
-        }
-
+        // = 버튼
         private void button2_Click(object sender, EventArgs e)
         {
-            int result = CalResult(textBox1.Text);
+            textBox2.Text = "";
+            Add add = new Add();
+            double result = add.add(textBox1.Text);
             textBox2.Text += $"결과: {result}";
+            
+        }
+
+        // 숫자+소수점
+        private void CommonBtn(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+
+            //string s = sender.ToString();
+            string text = btn.Text;
+            
+            textBox1.Text += text;
+        }
+
+        // + 기호
+        private void button_Add_Click(object sender, EventArgs e)
+        {
+            textBox1.Text += " + ";
         }
     }
 }
