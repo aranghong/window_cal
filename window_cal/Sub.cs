@@ -7,14 +7,14 @@ namespace window_cal
 {
     internal class Sub
     {
-        public double sub(string word)
+        public double sub(double num1, double num2)
         {
-            int index = word.IndexOf("-");
-            string a = word.Substring(0, index).Trim();
-            double s = double.Parse(a);
-            string b = word.Substring(index + 1).Trim();
-            double ss = double.Parse(b);
-            return s - ss;
+            return num1 - num2;
+        }
+
+        public double sub(double num1)
+        {
+            return num1;
         }
     }
 }

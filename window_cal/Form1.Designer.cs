@@ -54,7 +54,7 @@
             this.button_9 = new System.Windows.Forms.Button();
             this.button_6 = new System.Windows.Forms.Button();
             this.button_3 = new System.Windows.Forms.Button();
-            this.button31 = new System.Windows.Forms.Button();
+            this.x = new System.Windows.Forms.Button();
             this.button_RightB = new System.Windows.Forms.Button();
             this.button_8 = new System.Windows.Forms.Button();
             this.button_DelOne = new System.Windows.Forms.Button();
@@ -150,7 +150,7 @@
             this.button_Exp.Name = "button_Exp";
             this.button_Exp.Size = new System.Drawing.Size(112, 58);
             this.button_Exp.TabIndex = 14;
-            this.button_Exp.Text = "exp";
+            this.button_Exp.Text = "e";
             this.button_Exp.UseVisualStyleBackColor = true;
             this.button_Exp.Click += new System.EventHandler(this.CommonBtn);
             // 
@@ -161,7 +161,7 @@
             this.button_PowCal.Name = "button_PowCal";
             this.button_PowCal.Size = new System.Drawing.Size(112, 58);
             this.button_PowCal.TabIndex = 15;
-            this.button_PowCal.Text = "xʸ";
+            this.button_PowCal.Text = "^";
             this.button_PowCal.UseVisualStyleBackColor = true;
             this.button_PowCal.Click += new System.EventHandler(this.CommonBtn);
             // 
@@ -183,7 +183,9 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(112, 58);
             this.button9.TabIndex = 17;
+            this.button9.Text = "x²";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_1
             // 
@@ -293,6 +295,7 @@
             this.button_Clear.TabIndex = 30;
             this.button_Clear.Text = "C";
             this.button_Clear.UseVisualStyleBackColor = true;
+            this.button_Clear.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Factorial
             // 
@@ -301,7 +304,7 @@
             this.button_Factorial.Name = "button_Factorial";
             this.button_Factorial.Size = new System.Drawing.Size(112, 58);
             this.button_Factorial.TabIndex = 31;
-            this.button_Factorial.Text = "n!";
+            this.button_Factorial.Text = "!";
             this.button_Factorial.UseVisualStyleBackColor = true;
             this.button_Factorial.Click += new System.EventHandler(this.CommonBtn);
             // 
@@ -338,14 +341,16 @@
             this.button_3.UseVisualStyleBackColor = true;
             this.button_3.Click += new System.EventHandler(this.CommonBtn);
             // 
-            // button31
+            // x
             // 
-            this.button31.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button31.Location = new System.Drawing.Point(234, 283);
-            this.button31.Name = "button31";
-            this.button31.Size = new System.Drawing.Size(112, 58);
-            this.button31.TabIndex = 37;
-            this.button31.UseVisualStyleBackColor = true;
+            this.x.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.x.Location = new System.Drawing.Point(234, 283);
+            this.x.Name = "x";
+            this.x.Size = new System.Drawing.Size(112, 58);
+            this.x.TabIndex = 37;
+            this.x.Text = "|x|";
+            this.x.UseVisualStyleBackColor = true;
+            this.x.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_RightB
             // 
@@ -378,6 +383,7 @@
             this.button_DelOne.TabIndex = 40;
             this.button_DelOne.Text = "BackSpace";
             this.button_DelOne.UseVisualStyleBackColor = true;
+            this.button_DelOne.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_Div
             // 
@@ -386,7 +392,7 @@
             this.button_Div.Name = "button_Div";
             this.button_Div.Size = new System.Drawing.Size(112, 58);
             this.button_Div.TabIndex = 41;
-            this.button_Div.Text = "% ";
+            this.button_Div.Text = "%";
             this.button_Div.UseVisualStyleBackColor = true;
             this.button_Div.Click += new System.EventHandler(this.CommonBtn);
             // 
@@ -411,7 +417,7 @@
             this.Controls.Add(this.button_DelOne);
             this.Controls.Add(this.button_8);
             this.Controls.Add(this.button_RightB);
-            this.Controls.Add(this.button31);
+            this.Controls.Add(this.x);
             this.Controls.Add(this.button_3);
             this.Controls.Add(this.button_6);
             this.Controls.Add(this.button_9);
@@ -473,7 +479,7 @@
         private System.Windows.Forms.Button button_9;
         private System.Windows.Forms.Button button_6;
         private System.Windows.Forms.Button button_3;
-        private System.Windows.Forms.Button button31;
+        private System.Windows.Forms.Button x;
         private System.Windows.Forms.Button button_RightB;
         private System.Windows.Forms.Button button_8;
         private System.Windows.Forms.Button button_DelOne;
