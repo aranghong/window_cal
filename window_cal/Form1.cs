@@ -139,23 +139,38 @@ namespace window_cal
 
                     if (chars[i].Equals("π")) // π 처리
                     {
-                        textBox2.Text += $"{doubles[i]}π= {doubles[i] * Math.PI} \r\n";
-                        doubles[i] = (doubles[i] * Math.PI);
-                        chars.RemoveAt(i);
-                        result += doubles[i];
-                        continue;
+                        if (i < doubles.Count) {
+                            textBox2.Text += $"{doubles[i]}π= {doubles[i] * Math.PI} \r\n";
+                            doubles[i] = (doubles[i] * Math.PI);
+                            chars.RemoveAt(i);
+                            result += doubles[i];
+                            continue;
+                        }else
+                        {
+                            textBox2.Text += $"π={Math.PI} + \r\n";
+                            doubles.Add(Math.PI);
+                            chars.RemoveAt(i);
+                            result += doubles[i];
+                            continue;
+                        }
                     }
 
                     if (chars[i].Equals("!")) // 팩토리얼
                     {
                         Factorial fac = new Factorial();
 
-                        textBox2.Text += $"fact({doubles[i]})= ";
-                        doubles[i] = fac.factorialCal(doubles[i].ToString());
-                        chars.RemoveAt(i);
-                        result += doubles[i];
-                        textBox2.Text += doubles[i] + "\r\n";
-                        continue;
+                        if (i < doubles.Count) {
+                            textBox2.Text += $"fact({doubles[i]})= ";
+                            doubles[i] = fac.factorialCal(doubles[i].ToString());
+                            chars.RemoveAt(i);
+                            result += doubles[i];
+                            textBox2.Text += doubles[i] + "\r\n";
+                            continue;
+                        }
+                        else
+                        {
+                            MessageBox.Show("올바른 수식이 아닙니다! (!앞에 수를 넣어주세요.)");
+                        }
                     }
 
                     if (chars[i].Equals("^")) // xʸ 거듭제곱
