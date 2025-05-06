@@ -36,19 +36,32 @@ namespace window_cal
             {
                 for (int i = 0; i < ch.Length; i++)
                 {
-                    if (char.IsDigit(ch[i]) || ch[i] == '.') // 숫자인지 체크 숫자일 경우 true
+                    // 지수 표현까지 포함되도록 처리 (exp)
+                    if (char.IsDigit(ch[i]) || ch[i] == '.' || ch[i] == 'e' || ch[i] == 'E' ||
+    (ch[i] == '+' && temp.EndsWith("e")) ||
+    (ch[i] == '-' && temp.EndsWith("e"))) // 숫자인지 체크 숫자일 경우 true
                     {
-                        temp += ch[i];
+                        temp += ch[i];  // 숫자 or e-지수 표현
                     }
                     else if (ch[i] == '-' && (i == 0 || !char.IsDigit(ch[i - 1]))) // 음수 시작할 경우 처리
                     {
-                        temp += ch[i];
+                        temp += ch[i];  // 음수 시작 허용
                     }
                     else
                     {
                         if (!string.IsNullOrEmpty(temp))
                         {
-                            doubles.Add(double.Parse(temp)); // 지금까지 만든 숫자를 추가
+                            if (double.TryParse(temp, System.Globalization.NumberStyles.Float,
+                                System.Globalization.CultureInfo.InvariantCulture, out double parsedNumber))
+                            {
+                                //textBox2.Text += $"{temp} = {parsedNumber}\r\n";  //숫자 파싱 성공시 출력
+                                doubles.Add(parsedNumber);
+                            }
+                            else
+                            {
+                                MessageBox.Show($"잘못된 숫자 형식입니다: {temp}");
+                                return; // 계산 중단
+                            }
                             temp = "";
                         }
                         chars.Add(ch[i].ToString()); // 연산자 저장
@@ -64,115 +77,9 @@ namespace window_cal
 
 
                 // 기본연산
+                // 1차 우선순위 연산 처리 [^]
                 for (int i = 0; i < chars.Count; i++)
                 {
-
-                    if (chars[i].Equals("x"))
-                    {
-                        Mul mulCal = new Mul();
-
-                        if (i == 0)
-                        {
-                            result += mulCal.mul(doubles[i], doubles[i + 1]);
-                        }
-                        else
-                        {
-                            result *= mulCal.mul(doubles[i + 1]);
-                        }
-
-                    }
-
-                    if (chars[i].Equals("%"))
-                    {
-                        Div divCal = new Div();
-
-                        if (i == 0)
-                        {
-                            result += divCal.div(doubles[i], doubles[i + 1]);
-                        }
-                        else
-                        {
-                            result /= divCal.div(doubles[i + 1]);
-                        }
-
-                    }
-
-                    if (chars[i].Equals("+"))
-                    {
-                        Add addCal = new Add();
-
-                        if (i == 0)
-                        {
-                            result += addCal.add(doubles[i], doubles[i + 1]);
-                        }
-                        else
-                        {
-                            result += addCal.add(doubles[i + 1]);
-                        }
-
-                    }
-
-                    if (chars[i].Equals("-"))
-                    {
-                        Sub subCal = new Sub();
-
-                        if (i == 0)
-                        {
-                            result += subCal.sub(doubles[i], doubles[i + 1]);
-                        }
-                        else
-                        {
-                            result -= subCal.sub(doubles[i + 1]);
-                        }
-
-                    }
-
-                    if (chars[i].Equals("√")) // 제곱근
-                    {
-                        textBox2.Text += $"√{doubles[i]}= ";
-                        doubles[i] = Math.Sqrt(doubles[i]);
-                        chars.RemoveAt(i);
-                        result += doubles[i];
-                        textBox2.Text += doubles[i] + "\r\n";
-                        continue;
-                    }
-
-                    if (chars[i].Equals("π")) // π 처리
-                    {
-                        if (i < doubles.Count) {
-                            textBox2.Text += $"{doubles[i]}π= {doubles[i] * Math.PI} \r\n";
-                            doubles[i] = (doubles[i] * Math.PI);
-                            chars.RemoveAt(i);
-                            result += doubles[i];
-                            continue;
-                        }else
-                        {
-                            textBox2.Text += $"π={Math.PI} + \r\n";
-                            doubles.Add(Math.PI);
-                            chars.RemoveAt(i);
-                            result += doubles[i];
-                            continue;
-                        }
-                    }
-
-                    if (chars[i].Equals("!")) // 팩토리얼
-                    {
-                        Factorial fac = new Factorial();
-
-                        if (i < doubles.Count) {
-                            textBox2.Text += $"fact({doubles[i]})= ";
-                            doubles[i] = fac.factorialCal(doubles[i].ToString());
-                            chars.RemoveAt(i);
-                            result += doubles[i];
-                            textBox2.Text += doubles[i] + "\r\n";
-                            continue;
-                        }
-                        else
-                        {
-                            MessageBox.Show("올바른 수식이 아닙니다! (!앞에 수를 넣어주세요.)");
-                        }
-                    }
-
                     if (chars[i].Equals("^")) // xʸ 거듭제곱
                     {
                         if (i >= doubles.Count - 1)
@@ -183,25 +90,216 @@ namespace window_cal
 
                         textBox2.Text += $"{doubles[i]}^{doubles[i + 1]} = ";
                         doubles[i] = Math.Pow(doubles[i], doubles[i + 1]);
-                        chars.RemoveAt(i); 
-                        doubles.RemoveAt(i + 1); 
-                        result += doubles[i];
                         textBox2.Text += doubles[i] + "\r\n";
+                        chars.RemoveAt(i);
+                        doubles.RemoveAt(i + 1);
+                        i--;
+                        //result += doubles[i];
                         continue;
+                    }
+
+                    if (chars[i].Equals("√")) // 제곱근
+                    {
+                        //textBox2.Text += $"√{doubles[i]}= ";
+                        //doubles[i] = Math.Sqrt(doubles[i]);
+
+                        double sqrtTarget = doubles[i];
+
+                        if (sqrtTarget < 0)
+                        {
+                            // 음수일 경우 음수 부호 유지한 채 절댓값 처리
+                            textBox2.Text += $"√({sqrtTarget})= ";
+                            doubles[i] = -Math.Sqrt(Math.Abs(sqrtTarget));
+                        }
+                        else
+                        {
+                            textBox2.Text += $"√{sqrtTarget}= ";
+                            doubles[i] = Math.Sqrt(sqrtTarget);
+                        }
+
+                        chars.RemoveAt(i);
+                        //result += doubles[i];
+                        textBox2.Text += doubles[i] + "\r\n";
+                        i--;
+                        continue;
+                    }
+
+                    if (chars[i].Equals("π")) // π 처리
+                    {
+                        if (i < doubles.Count)
+                        {
+                            textBox2.Text += $"{doubles[i]}π= {doubles[i] * Math.PI} \r\n";
+                            doubles[i] = (doubles[i] * Math.PI);
+                            chars.RemoveAt(i);
+                            i--;
+                            //result += doubles[i];
+                            continue;
+                        }
+                        else
+                        {
+                            textBox2.Text += $"π={Math.PI} + \r\n";
+                            doubles.Add(Math.PI);
+                            chars.RemoveAt(i);
+                            i--;
+                            //result += doubles[i];
+                            continue;
+                        }
+                    }
+
+                    if (chars[i].Equals("!")) // 팩토리얼
+                    {
+                        Factorial fac = new Factorial();
+
+                        if (i < doubles.Count)
+                        {
+                            textBox2.Text += $"fact({doubles[i]})= ";
+                            doubles[i] = fac.factorialCal(doubles[i].ToString());
+                            chars.RemoveAt(i);
+                            //result += doubles[i];
+                            textBox2.Text += doubles[i] + "\r\n";
+                            i--;
+                            continue;
+                        }
+                        else
+                        {
+                            MessageBox.Show("올바른 수식이 아닙니다! (!앞에 수를 넣어주세요.)");
+                        }
                     }
 
                     if (chars[i].Equals("e")) // exp
                     {
                         textBox2.Text += $"EXP({doubles[i]})= {Math.Exp(doubles[i])} \r\n";
-                        result += Math.Exp(doubles[i]);
-                        doubles.Add(Math.Exp(doubles[i]));
+                        //result += Math.Exp(doubles[i]);
+                        //doubles.Add(Math.Exp(doubles[i]));
+                        doubles[i] = Math.Exp(doubles[i]);
+                        Console.WriteLine(doubles[i]);
                         chars.RemoveAt(i);
+                        i--;
                         continue;
                     }
+                }
+                // 1.5차 우선순위 연산 처리 [*, /]
+                for (int i = 0; i < chars.Count; i++)
+                {
+                    Console.WriteLine(chars[i]);
 
+                    // 3+2*5 일 경우, (2*5)곱셈부터 우선적으로 연산해야 함
+                    if (chars[i] == "x" || chars[i] == "%" || chars[i] == "^")
+                    {
+
+                        if (chars[i].Equals("x"))
+                        {
+                            double tmp = 1;
+                            Mul mulCal = new Mul();
+                            tmp = mulCal.mul(doubles[i], doubles[i + 1]);
+
+                            //if (i == 0)
+                            //{
+                            //    tmp = mulCal.mul(doubles[i], doubles[i + 1]);
+                            //}
+                            //else
+                            //{
+                            //    tmp *= mulCal.mul(doubles[i + 1]);
+                            //}
+
+                            doubles[i] = tmp;
+
+                            chars.RemoveAt(i);
+                            doubles.RemoveAt(i + 1);
+                            i--;
+
+                            Console.WriteLine(tmp);
+                            continue;
+
+                        }
+
+                        if (chars[i].Equals("%"))
+                        {
+                            double tmp = 0;
+                            Div divCal = new Div();
+                            tmp = divCal.div(doubles[i], doubles[i + 1]);
+
+                            //if (i == 0)
+                            //{
+                            //    tmp += divCal.div(doubles[i], doubles[i + 1]);
+                            //}
+                            //else
+                            //{
+                            //    tmp /= divCal.div(doubles[i + 1]);
+                            //}
+
+                            doubles[i] = tmp;
+
+                            chars.RemoveAt(i);
+                            doubles.RemoveAt(i + 1);
+                            i--;
+                            continue;
+
+                        }
+
+                    }
                 }
 
-                textBox2.Text += $"{textBox1.Text} = {result}";
+                //2차 우선순위 낮은 연산 실행
+                // 💡 먼저 result를 기본 값으로 설정
+
+                if (chars.Count == 0 && doubles.Count == 1)
+                {
+                    result = doubles[0];  // 예: 2^3만 입력된 경우 -> 연산자 없이 숫자만 있을 때
+                    if (!textBox2.Text.Contains($"{result}")) // 중복 방지
+                    {
+                        textBox2.Text += $"{textBox1.Text} = {result}";
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < chars.Count; i++)
+                    {
+                        if (chars[i].Equals("+"))
+                        {
+                            Add addCal = new Add();
+
+                            //result += addCal.add(doubles[i], doubles[i + 1]);
+
+                            if (i == 0)
+                            {
+                                result += addCal.add(doubles[i], doubles[i + 1]);
+                            }
+                            else
+                            {
+                                result += addCal.add(doubles[i + 1]);
+                            }
+
+                            Console.WriteLine(result);
+
+
+                        }
+
+                        if (chars[i].Equals("-"))
+                        {
+                            Sub subCal = new Sub();
+
+                            if (i == 0)
+                            {
+                                result += subCal.sub(doubles[i], doubles[i + 1]);
+                            }
+                            else
+                            {
+                                result -= subCal.sub(doubles[i + 1]);
+                            }
+
+                        }
+
+                        
+
+                    }
+                    textBox2.Text += $"{textBox1.Text} = {result}";
+
+
+                }
+                //textBox2.Text += $"{textBox1.Text} = {result}";
+
+
             }
             else 
             {
@@ -233,8 +331,9 @@ namespace window_cal
                 if (double.TryParse(textBox1.Text, out double value))
                 {
                     AbsCal cal = new AbsCal();
-                    textBox1.Text = cal.abs(value);
-                    textBox2.Text = $"|{value}| = {textBox1.Text}";
+
+                    string tmp = cal.abs(value);
+                    textBox2.Text = $"|{value}| = {tmp}";
                 }
                 else
                 {
@@ -252,15 +351,15 @@ namespace window_cal
             {
                 if (double.TryParse(textBox1.Text, out double value))
                 {
-                    textBox1.Text = (value * value).ToString();
-                    textBox2.Text = $"{value}² = {textBox1.Text}";
+                    string tmp = (value * value).ToString();
+                    textBox2.Text = $"{value}² = {tmp}";
                 }
             }
             else if (text.Equals("+/-"))
             {
                 if (double.TryParse(textBox1.Text, out double value))
                 {
-                    textBox1.Text = (value * -1).ToString();
+                    textBox2.Text = (value * -1).ToString();
                 }else
                 {
                     MessageBox.Show("올바른 식이 아닙니다.");
