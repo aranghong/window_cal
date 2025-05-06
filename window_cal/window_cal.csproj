@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5A7A21E4-C5C0-486E-AF11-44BFA0C75F30}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>window_cal</RootNamespace>
     <AssemblyName>window_cal</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
