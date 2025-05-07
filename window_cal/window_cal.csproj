@@ -52,7 +52,6 @@
     <Compile Include="AbsCal.cs" />
     <Compile Include="Add.cs" />
     <Compile Include="Div.cs" />
-    <Compile Include="ExpCal.cs" />
     <Compile Include="Factorial.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
