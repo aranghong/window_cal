@@ -1,4 +1,5 @@
 # 📌 계산기 프로젝트 기능 명세서
+---
 
 ## 👥 역할 분담
 
@@ -88,7 +89,7 @@
 > 🧩 사용자가 원하는 분위기에 맞게 계산기의 전체 색상을 변경할 수 있는 기능입니다 !
 
 ### 🔘 테마 선택 방식
-- 계산기 창 좌측 상단에 위치한 **라디오 버튼(RadioButton)** 3개 중 하나를 선택하면,
+- 계산기 우측에 위치한 **라디오 버튼** 3개 중 하나를 선택하면,
 - 아래 항목들의 색상이 즉시 변경됩니다:
   - **버튼(Button) 배경색**
   - **출력 영역(TextBox) 배경색**
@@ -108,3 +109,11 @@
 - `RadioButton.CheckedChanged` 이벤트를 통해 테마 변경 로직 수행
 - 각 테마에 맞는 색상 코드는 `ColorTranslater.FromHTML(...)` 또는 `SystemColors` 등으로 지정
 - 모든 컨트롤(Button, TextBox 등)은 루프를 통해 일괄 적용
+
+
+---
+##  🏁 최종 완성본 예시
+
+<img src="https://github.com/user-attachments/assets/d9a7b6ca-2cd0-4b86-8fd2-5afebee96f5a" width="700" />
+
+
