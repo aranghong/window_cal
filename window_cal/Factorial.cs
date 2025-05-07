@@ -15,10 +15,22 @@ namespace window_cal
             int endIndex = word.IndexOf(")"); 
             long result = 1;
 
-            for (int i = 1; i <= int.Parse(word); i++)
+            if (int.Parse(word) < 0)
             {
-                result *= i;
+                for (int i = 1; i <=  ((-1) * int.Parse(word)); i++)
+                {
+                    result *= i;
+                }
+                result *= (-1);
             }
+            else
+            {
+                for (int i = 1; i <= int.Parse(word); i++)
+                {
+                    result *= i;
+                }
+            }
+               
 
             return result;
 

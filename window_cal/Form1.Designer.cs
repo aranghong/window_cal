@@ -56,14 +56,19 @@
             this.button_RightB = new System.Windows.Forms.Button();
             this.button_8 = new System.Windows.Forms.Button();
             this.button_DelOne = new System.Windows.Forms.Button();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(0, 1);
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(12, 12);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(582, 276);
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(570, 265);
             this.textBox1.TabIndex = 0;
             // 
             // button_DecimalPoint
@@ -90,11 +95,12 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(588, 1);
+            this.textBox2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.textBox2.Location = new System.Drawing.Point(588, 12);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(233, 276);
+            this.textBox2.Size = new System.Drawing.Size(233, 265);
             this.textBox2.TabIndex = 2;
             // 
             // button_0
@@ -111,12 +117,13 @@
             // button8
             // 
             this.button8.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button8.Location = new System.Drawing.Point(0, 603);
+            this.button8.Location = new System.Drawing.Point(12, 603);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(112, 58);
+            this.button8.Size = new System.Drawing.Size(100, 58);
             this.button8.TabIndex = 9;
             this.button8.Text = "%";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.CommonBtn);
             // 
             // button_SignCal
             // 
@@ -132,9 +139,9 @@
             // button_log
             // 
             this.button_log.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_log.Location = new System.Drawing.Point(0, 539);
+            this.button_log.Location = new System.Drawing.Point(12, 539);
             this.button_log.Name = "button_log";
-            this.button_log.Size = new System.Drawing.Size(112, 58);
+            this.button_log.Size = new System.Drawing.Size(100, 58);
             this.button_log.TabIndex = 13;
             this.button_log.Text = "x";
             this.button_log.UseVisualStyleBackColor = true;
@@ -143,9 +150,9 @@
             // button_Exp
             // 
             this.button_Exp.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_Exp.Location = new System.Drawing.Point(0, 475);
+            this.button_Exp.Location = new System.Drawing.Point(12, 475);
             this.button_Exp.Name = "button_Exp";
-            this.button_Exp.Size = new System.Drawing.Size(112, 58);
+            this.button_Exp.Size = new System.Drawing.Size(100, 58);
             this.button_Exp.TabIndex = 14;
             this.button_Exp.Text = "-";
             this.button_Exp.UseVisualStyleBackColor = true;
@@ -154,9 +161,9 @@
             // button_PowCal
             // 
             this.button_PowCal.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_PowCal.Location = new System.Drawing.Point(0, 411);
+            this.button_PowCal.Location = new System.Drawing.Point(12, 411);
             this.button_PowCal.Name = "button_PowCal";
-            this.button_PowCal.Size = new System.Drawing.Size(112, 58);
+            this.button_PowCal.Size = new System.Drawing.Size(100, 58);
             this.button_PowCal.TabIndex = 15;
             this.button_PowCal.Text = "+";
             this.button_PowCal.UseVisualStyleBackColor = true;
@@ -165,9 +172,9 @@
             // button_Square
             // 
             this.button_Square.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button_Square.Location = new System.Drawing.Point(0, 347);
+            this.button_Square.Location = new System.Drawing.Point(12, 347);
             this.button_Square.Name = "button_Square";
-            this.button_Square.Size = new System.Drawing.Size(112, 58);
+            this.button_Square.Size = new System.Drawing.Size(100, 58);
             this.button_Square.TabIndex = 16;
             this.button_Square.Text = "^";
             this.button_Square.UseVisualStyleBackColor = true;
@@ -176,9 +183,9 @@
             // button9
             // 
             this.button9.Font = new System.Drawing.Font("Gulim", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button9.Location = new System.Drawing.Point(0, 283);
+            this.button9.Location = new System.Drawing.Point(12, 283);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(112, 58);
+            this.button9.Size = new System.Drawing.Size(100, 58);
             this.button9.TabIndex = 17;
             this.button9.Text = "x²";
             this.button9.UseVisualStyleBackColor = true;
@@ -351,7 +358,7 @@
             // 
             // button_DelOne
             // 
-            this.button_DelOne.Font = new System.Drawing.Font("Gulim", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.button_DelOne.Font = new System.Drawing.Font("Gulim", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.button_DelOne.Location = new System.Drawing.Point(470, 283);
             this.button_DelOne.Name = "button_DelOne";
             this.button_DelOne.Size = new System.Drawing.Size(112, 58);
@@ -360,11 +367,55 @@
             this.button_DelOne.UseVisualStyleBackColor = true;
             this.button_DelOne.Click += new System.EventHandler(this.CommonBtn);
             // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.radioButton1.ForeColor = System.Drawing.Color.DarkSalmon;
+            this.radioButton1.Location = new System.Drawing.Point(624, 319);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(96, 28);
+            this.radioButton1.TabIndex = 41;
+            this.radioButton1.Text = "Beige";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.radioButton2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.radioButton2.Location = new System.Drawing.Point(624, 373);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(172, 28);
+            this.radioButton2.TabIndex = 42;
+            this.radioButton2.Text = "Cream Soda";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Font = new System.Drawing.Font("Gulim", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.radioButton3.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.radioButton3.Location = new System.Drawing.Point(624, 431);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(114, 28);
+            this.radioButton3.TabIndex = 43;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Default";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(833, 664);
+            this.Controls.Add(this.radioButton3);
+            this.Controls.Add(this.radioButton2);
+            this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.button_DelOne);
             this.Controls.Add(this.button_8);
             this.Controls.Add(this.button_RightB);
@@ -430,6 +481,9 @@
         private System.Windows.Forms.Button button_RightB;
         private System.Windows.Forms.Button button_8;
         private System.Windows.Forms.Button button_DelOne;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton3;
     }
 }
 

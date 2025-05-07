@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace window_cal
 {
@@ -16,6 +17,34 @@ namespace window_cal
         public Form1()
         {
             InitializeComponent();
+        
+            commonButtons.Add(button_PowCal);
+            commonButtons.Add(button9);
+            commonButtons.Add(button_PiCal);
+            commonButtons.Add(x);
+            commonButtons.Add(button_Clear);
+            commonButtons.Add(button_DelOne);
+            commonButtons.Add(button_Square);
+            commonButtons.Add(button_LeftB);
+            commonButtons.Add(button_RightB);
+            commonButtons.Add(button_Factorial);
+            commonButtons.Add(button_equal);
+            commonButtons.Add(button_7);
+            commonButtons.Add(button_8);
+            commonButtons.Add(button_9);
+            commonButtons.Add(button_Exp);
+            commonButtons.Add(button_4);
+            commonButtons.Add(button_5);
+            commonButtons.Add(button_6);
+            commonButtons.Add(button_log);
+            commonButtons.Add(button_1);
+            commonButtons.Add(button_2);
+            commonButtons.Add(button_3);
+            commonButtons.Add(button8);
+            commonButtons.Add(button_SignCal);
+            commonButtons.Add(button_0);
+            commonButtons.Add(button_DecimalPoint);
+            
         }
         
         // = 버튼
@@ -107,7 +136,7 @@ namespace window_cal
                             if (i >= doubles.Count - 1)
                             {
                                 MessageBox.Show("올바른 수식이 아닙니다! (^앞에 수를 넣어주세요.)");
-                                continue; // 오류 메시지 출력 후 계산 생럍
+                                continue; // 오류 메시지 출력 후 계산 생략
                             }
 
                             textBox2.Text += $"{doubles[i]}^{doubles[i + 1]} = ";
@@ -190,7 +219,7 @@ namespace window_cal
                     Console.WriteLine(chars[i]);
 
                     // 3+2*5 일 경우, (2*5)곱셈부터 우선적으로 연산해야 함
-                    if (chars[i] == "x" || chars[i] == "%" || chars[i] == "^")
+                    if (chars[i] == "x" || chars[i] == "%")
                     {
 
                         if (chars[i].Equals("x"))
@@ -323,13 +352,6 @@ namespace window_cal
                 {
                     MessageBox.Show("절댓값을 적용할 수 있는 숫자만 입력해 주세요.");
                 }
-            }else if (text.Equals("xʸ"))
-            {
-                if (double.TryParse(textBox1.Text, out double value))
-                {
-
-                }
-
             }
             else if (text.Equals("x²"))
             {
@@ -352,6 +374,53 @@ namespace window_cal
             else
             {
                 textBox1.Text += text;
+            }
+        }
+
+        List<Button> commonButtons = new List<Button>();
+
+
+        // 배경색 On
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                this.BackColor = ColorTranslator.FromHtml("#E5D0AC");
+                textBox2.BackColor = ColorTranslator.FromHtml("#FEF9E1");
+
+                foreach (var btn in commonButtons)
+                {
+                    btn.BackColor = textBox2.BackColor;
+                }
+            }
+        }
+
+        // 배경색 Off
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                this.BackColor = ColorTranslator.FromHtml("#D2E0FB");
+                textBox2.BackColor = ColorTranslator.FromHtml("#EEF5FF");
+
+                foreach (var btn in commonButtons)
+                {
+                    btn.BackColor = textBox2.BackColor;
+                }
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                this.BackColor = SystemColors.Control;
+                textBox2.BackColor = SystemColors.ControlLightLight;
+
+                foreach (var btn in commonButtons)
+                {
+                    btn.BackColor = textBox2.BackColor;
+                }
             }
         }
 
