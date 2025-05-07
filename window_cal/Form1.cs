@@ -17,34 +17,16 @@ namespace window_cal
         public Form1()
         {
             InitializeComponent();
-        
-            commonButtons.Add(button_PowCal);
-            commonButtons.Add(button9);
-            commonButtons.Add(button_PiCal);
-            commonButtons.Add(x);
-            commonButtons.Add(button_Clear);
-            commonButtons.Add(button_DelOne);
-            commonButtons.Add(button_Square);
-            commonButtons.Add(button_LeftB);
-            commonButtons.Add(button_RightB);
-            commonButtons.Add(button_Factorial);
-            commonButtons.Add(button_equal);
-            commonButtons.Add(button_7);
-            commonButtons.Add(button_8);
-            commonButtons.Add(button_9);
-            commonButtons.Add(button_Exp);
-            commonButtons.Add(button_4);
-            commonButtons.Add(button_5);
-            commonButtons.Add(button_6);
-            commonButtons.Add(button_log);
-            commonButtons.Add(button_1);
-            commonButtons.Add(button_2);
-            commonButtons.Add(button_3);
-            commonButtons.Add(button8);
-            commonButtons.Add(button_SignCal);
-            commonButtons.Add(button_0);
-            commonButtons.Add(button_DecimalPoint);
-            
+
+            //폼 로드될 때, 모든 버튼에 태그 속성 부여
+            foreach (Control ctrl in this.Controls)
+            {
+                if (ctrl is Button btn)
+                {
+                    btn.Tag = "theme";
+                }
+            }
+
         }
         
         // = 버튼
@@ -377,7 +359,6 @@ namespace window_cal
             }
         }
 
-        List<Button> commonButtons = new List<Button>();
 
 
         // 배경색 On
@@ -388,10 +369,15 @@ namespace window_cal
                 this.BackColor = ColorTranslator.FromHtml("#E5D0AC");
                 textBox2.BackColor = ColorTranslator.FromHtml("#FEF9E1");
 
-                foreach (var btn in commonButtons)
+                //태그 속성 가진 버튼에 테마 색상 반영
+                foreach (Control ctrl in this.Controls)
                 {
-                    btn.BackColor = textBox2.BackColor;
+                    if (ctrl is Button btn && (btn.Tag?.ToString() == "theme"))
+                    {
+                        btn.BackColor = textBox2.BackColor;
+                    }
                 }
+
             }
         }
 
@@ -403,9 +389,14 @@ namespace window_cal
                 this.BackColor = ColorTranslator.FromHtml("#D2E0FB");
                 textBox2.BackColor = ColorTranslator.FromHtml("#EEF5FF");
 
-                foreach (var btn in commonButtons)
+                //태그 속성 가진 버튼에 테마 색상 반영
+
+                foreach (Control ctrl in this.Controls)
                 {
-                    btn.BackColor = textBox2.BackColor;
+                    if (ctrl is Button btn && (btn.Tag?.ToString() == "theme"))
+                    {
+                        btn.BackColor = textBox2.BackColor;
+                    }
                 }
             }
         }
@@ -417,9 +408,14 @@ namespace window_cal
                 this.BackColor = SystemColors.Control;
                 textBox2.BackColor = SystemColors.ControlLightLight;
 
-                foreach (var btn in commonButtons)
+                //태그 속성 가진 버튼에 테마 색상 반영
+
+                foreach (Control ctrl in this.Controls)
                 {
-                    btn.BackColor = textBox2.BackColor;
+                    if (ctrl is Button btn && (btn.Tag?.ToString() == "theme"))
+                    {
+                        btn.BackColor = textBox2.BackColor;
+                    }
                 }
             }
         }
