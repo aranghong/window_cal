@@ -23,25 +23,47 @@
 - 마지막 숫자는 `!string.IsNullOrEmpty(temp)`로 null 체크 후 리스트에 추가
 
 
-
 ### 🧮 2. 연산자 파싱 및 처리
 - 연산자 리스트(`char[]`)를 순차적으로 순회
 - 조건문(`if/else`)으로 각 기호에 해당하는 연산 분기
 - 예: `π`, `√`, `^`, `!`, `+`, `-`, `×`, `÷`, `%` 등 처리
 
-
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/63f16d72-56c5-4f26-b3ac-12f59d191d79" width="300" />
+</p>
 
 ### 🔢 3. 연산 우선순위 적용
-1. **고급 연산**: `^`, `√`, `π`, `!`  
+1. **고급 연산**: `^`, `√`, `π`, `!`
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7587b248-b03c-417f-bce9-e7045fec2b9d" width="300" />
+  <img src="https://github.com/user-attachments/assets/95945748-1e76-453a-bc1c-2405828c4558" width="300" />
+</p>
+
+
 2. **중간 연산**: `×`, `%`  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0722d9de-183a-4da1-b7fb-43bf6bd20ea9" width="300" />
+</p>
+
 3. **기본 연산**: `+`, `-`  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3446e684-2d5a-4cab-bd20-2e1339f014d3" width="300" />
+</p>
+
 4. **부가 연산**: `|x|`, `x²`, `±`
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/40a8e2d9-7c35-4f42-ba26-aa1c8755074a" width="300" />
+</p>
 
 
 
 ### 🧠 4. 특수 연산 로직
 - `e` (지수): `NumberStyles.Float`로 파싱 시 자동 처리
   - ex) 3e2 = 3 * 10^2 = 300으로 자동 변환 !!
+ <p align="center">
+   <img src="https://github.com/user-attachments/assets/4ea862d6-256c-4fb3-8ce6-e8e0a8609f81" width="300" />
+  </p>
+
 - `π`: 상수로 변환하여 연산에 사용
 - `x^y`: 제곱 계산 (x, y 중 하나라도 없을 경우 예외 발생)
 
@@ -114,6 +136,13 @@
 ---
 ##  🏁 최종 완성본 예시
 
-<img src="https://github.com/user-attachments/assets/d9a7b6ca-2cd0-4b86-8fd2-5afebee96f5a" width="700" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/78e9fb98-4d6b-4523-97a4-aa7258d4bbcc" width="32%" />
+  <img src="https://github.com/user-attachments/assets/55baebb4-de1a-4123-b1e4-d08b78f2e004" width="32%" />
+  <img src="https://github.com/user-attachments/assets/f24066a7-0f51-4205-8e58-d416b8f376fd" width="32%" />
+</p>
+
+
+
 
 
