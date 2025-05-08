@@ -89,7 +89,7 @@ namespace window_cal
                                 //textBox2.Text += $"{temp} = {parsedNumber}\r\n";  //숫자 파싱 성공시 출력
                                 doubles.Add(parsedNumber);
 
-                                if (ch.Contains('e'))
+                                if (temp.Contains('e'))
                                 {
                                     textBox2.Text += $"{temp} = {parsedNumber}\r\n";  //숫자 파싱 성공시 출력
                                 }
