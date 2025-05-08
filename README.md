@@ -1,5 +1,4 @@
 # 📌 계산기 프로젝트 기능 명세서
----
 
 ## 👥 역할 분담
 
@@ -8,74 +7,6 @@
 | **공동개발** | UI 구현 |
 | **홍아랑** | 고급 연산(루트, 제곱, 파이, 10의 지수수 등) 기능 개발 |
 | **이현배** | 기본 연산(사칙연산, 부호, 클리어), 입력 처리 및 이벤트 로직 구현 |
-
----
-
-##  🔧 설계 흐름
-
-> 💡 계산기 프로그램은 **입력 → 파싱 → 연산 → 출력** 흐름으로 구성됩니다 !!
-
-### 📝 1. 수식 입력 처리
-- 사용자 입력을 `TextBox`에서 문자열로 수신  
-  예: `"22+3-5×8"`
-- `char.IsDigit()`를 활용하여 숫자와 연산자를 판별
-- 숫자는 `double 리스트`, 연산자는 `char 리스트`에 저장
-- 마지막 숫자는 `!string.IsNullOrEmpty(temp)`로 null 체크 후 리스트에 추가
-
-
-### 🧮 2. 연산자 파싱 및 처리
-- 연산자 리스트(`char[]`)를 순차적으로 순회
-- 조건문(`if/else`)으로 각 기호에 해당하는 연산 분기
-- 예: `π`, `√`, `^`, `!`, `+`, `-`, `×`, `÷`, `%` 등 처리
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/63f16d72-56c5-4f26-b3ac-12f59d191d79" width="300" />
-</p>
-
-### 🔢 3. 연산 우선순위 적용
-1. **고급 연산**: `^`, `√`, `π`, `!`
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/7587b248-b03c-417f-bce9-e7045fec2b9d" width="300" />
-  <img src="https://github.com/user-attachments/assets/95945748-1e76-453a-bc1c-2405828c4558" width="300" />
-</p>
-
-
-2. **중간 연산**: `×`, `%`  
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0722d9de-183a-4da1-b7fb-43bf6bd20ea9" width="300" />
-</p>
-
-3. **기본 연산**: `+`, `-`  
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/3446e684-2d5a-4cab-bd20-2e1339f014d3" width="300" />
-</p>
-
-4. **부가 연산**: `|x|`, `x²`, `±`
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/40a8e2d9-7c35-4f42-ba26-aa1c8755074a" width="300" />
-</p>
-
-
-
-### 🧠 4. 특수 연산 로직
-- `e` (지수): `NumberStyles.Float`로 파싱 시 자동 처리
-  - ex) 3e2 = 3 * 10^2 = 300으로 자동 변환 !!
- <p align="center">
-   <img src="https://github.com/user-attachments/assets/4ea862d6-256c-4fb3-8ce6-e8e0a8609f81" width="40%" />
-   <img src="https://github.com/user-attachments/assets/8a826085-3709-472d-896c-c571c431361c" width="40%" />
-  </p>
-
-- `π`: 상수로 변환하여 연산에 사용
-- `x^y`: 제곱 계산 (x, y 중 하나라도 없을 경우 예외 발생)
-
-
-
-### 🧼 5. 예외 처리 및 부가 기능
-- `Clear`: 전체 식 제거
-- `Backspace`: 마지막 한 문자 제거
-- `0으로 나누기`: 무한대(♾️) 처리
-- 잘못된 수식: MessageBox로 에러 메시지 출력
-
 
 ---
 
@@ -126,8 +57,6 @@
 | **Beige** | 베이지 배경, 연노랑 톤 버튼 | 따뜻하고 차분한 분위기 |
 | **Soda** | 시원한 블루 배경, 연블루 톤 버튼 | 맑고 청량한 시각적 느낌 |
 
----
-
 ### 🛠️ 구현 방식
 - `RadioButton.CheckedChanged` 이벤트를 통해 테마 변경 로직 수행
 - 각 테마에 맞는 색상 코드는 `ColorTranslater.FromHTML(...)` 또는 `SystemColors` 등으로 지정
@@ -135,6 +64,77 @@
 
 
 ---
+
+##  🔧 설계 흐름
+
+> 💡 계산기 프로그램은 **입력 → 파싱 → 연산 → 출력** 흐름으로 구성됩니다 !!
+
+### 📝 1. 수식 입력 처리
+- 사용자 입력을 `TextBox`에서 문자열로 수신  
+  예: `"22+3-5×8"`
+- `char.IsDigit()`를 활용하여 숫자와 연산자를 판별
+- 숫자는 `double 리스트`, 연산자는 `char 리스트`에 저장
+- 마지막 숫자는 `!string.IsNullOrEmpty(temp)`로 null 체크 후 리스트에 추가
+
+
+### 🧮 2. 연산자 파싱 및 처리
+- 연산자 리스트(`char[]`)를 순차적으로 순회
+- 조건문(`if/else`)으로 각 기호에 해당하는 연산 분기
+- 예: `π`, `√`, `^`, `!`, `+`, `-`, `×`, `÷`, `%` 등 처리
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/63f16d72-56c5-4f26-b3ac-12f59d191d79" width="300" />
+</p>
+
+### 🔢 3. 연산 우선순위 적용
+3-1️⃣. **고급 연산**: `^`, `√`, `π`, `!`
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7587b248-b03c-417f-bce9-e7045fec2b9d" width="300" />
+  <img src="https://github.com/user-attachments/assets/95945748-1e76-453a-bc1c-2405828c4558" width="300" />
+</p>
+
+
+3-2️⃣. **중간 연산**: `×`, `%`  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0722d9de-183a-4da1-b7fb-43bf6bd20ea9" width="300" />
+</p>
+
+3-3️⃣. **기본 연산**: `+`, `-`  
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3446e684-2d5a-4cab-bd20-2e1339f014d3" width="300" />
+</p>
+
+3-4️⃣. **부가 연산**: `|x|`, `x²`, `±`
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/40a8e2d9-7c35-4f42-ba26-aa1c8755074a" width="300" />
+</p>
+
+
+
+### 🧠 4. 특수 연산 로직
+- `e` (지수): `NumberStyles.Float`로 파싱 시 자동 처리
+  - ex) 3e2 = 3 * 10^2 = 300으로 자동 변환 !!
+ <p align="center">
+   <img src="https://github.com/user-attachments/assets/4ea862d6-256c-4fb3-8ce6-e8e0a8609f81" width="40%" />
+   <img src="https://github.com/user-attachments/assets/8a826085-3709-472d-896c-c571c431361c" width="40%" />
+  </p>
+
+- `π`: 상수로 변환하여 연산에 사용
+- `x^y`: 제곱 계산 (x, y 중 하나라도 없을 경우 예외 발생)
+
+
+
+### 🧼 5. 예외 처리 및 부가 기능
+- `Clear`: 전체 식 제거
+- `Backspace`: 마지막 한 문자 제거
+- `0으로 나누기`: 무한대(♾️) 처리
+- 잘못된 수식: MessageBox로 에러 메시지 출력
+
+
+---
+
+
+
 ##  🏁 최종 완성본 예시
 
 <p align="center">
