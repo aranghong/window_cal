@@ -61,7 +61,8 @@
 - `e` (지수): `NumberStyles.Float`로 파싱 시 자동 처리
   - ex) 3e2 = 3 * 10^2 = 300으로 자동 변환 !!
  <p align="center">
-   <img src="https://github.com/user-attachments/assets/4ea862d6-256c-4fb3-8ce6-e8e0a8609f81" width="300" />
+   <img src="https://github.com/user-attachments/assets/4ea862d6-256c-4fb3-8ce6-e8e0a8609f81" width="40%" />
+   <img src="https://github.com/user-attachments/assets/8a826085-3709-472d-896c-c571c431361c" width="40%" />
   </p>
 
 - `π`: 상수로 변환하여 연산에 사용
